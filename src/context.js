@@ -21,16 +21,17 @@ export const ContextProvider = ({ children }) => {
       'X-RapidAPI-Host': 'dog-facts2.p.rapidapi.com',
     },
   }
-  axios
-    .request(options)
-    .then(function (response) {
-      setBot(response.data)
-    })
-    .catch(function (error) {
-      console.error(error)
-    })
+  useEffect(() => {
+    axios
+      .request(options)
+      .then(function (response) {
+        setBot(response.data)
+      })
+      .catch(function (error) {
+        console.error(error)
+      })
+  }, [userText])
   const messageSend = () => {
-    console.log(bot?.facts)
     const scrollDistance = 257
     if (userText !== '') {
       setUserChat([...userChat, { text: userText, bot: bot?.facts }])
@@ -39,7 +40,6 @@ export const ContextProvider = ({ children }) => {
         top: scrollDistance,
         behavior: 'smooth',
       })
-      console.log(userChat)
     }
   }
   return (
