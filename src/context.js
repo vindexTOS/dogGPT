@@ -7,7 +7,7 @@ export const ContextProvider = ({ children }) => {
   // useEffect(()=>{
 
   // },[bot])
-  const scroll = React.useRef()
+  const scroll = React.useRef(null)
   const [userChat, setUserChat] = useState([])
   const [userText, setUserText] = useState('')
 
@@ -32,15 +32,13 @@ export const ContextProvider = ({ children }) => {
       })
   }, [userText])
   const messageSend = () => {
-    const scrollDistance = 257
     if (userText !== '') {
       setUserChat([...userChat, { text: userText, bot: bot?.facts }])
       setUserText('')
-      scroll.current.scrollIntoView({
-        top: scrollDistance,
-        behavior: 'smooth',
-      })
     }
+    scroll.current.scrollIntoView({
+      behavior: 'smooth',
+    })
   }
   return (
     <context.Provider

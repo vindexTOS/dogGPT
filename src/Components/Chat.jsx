@@ -13,6 +13,14 @@ function Chat() {
     setDogPhoto(dogImg[index])
     console.log(dogPhoto)
   }, [])
+
+  useEffect(() => {
+    setTimeout(() => {
+      scroll?.current.scrollIntoView({
+        behavior: 'smooth',
+      })
+    }, 500)
+  }, [userChat])
   return (
     <section className="h-[100vh] w-[100vw]  overflow-y-scroll    sticky top-0  scroll ">
       {userChat?.map((val, index) => {
@@ -31,8 +39,8 @@ function Chat() {
                 className="w-[30px] h-[30px] rounded-[8px]   ml-[6rem]"
               />
               <p className="text-white  ">{val.bot}</p>
-              <span ref={scroll}></span>
             </div>
+            <span ref={scroll}></span>
           </div>
         )
       })}

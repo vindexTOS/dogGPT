@@ -2,10 +2,14 @@ import React from 'react'
 import { TbSend } from 'react-icons/tb'
 import { UseContextEtc } from '../context'
 function InputChat(props) {
-  const { setUserText, messageSend, userText, ban } = UseContextEtc()
-
+  const { setUserText, messageSend, userText, ban, scroll } = UseContextEtc()
+  // const scrolling = () => {
+  //   scroll.current.scrollIntoView({
+  //     behavior: 'smooth',
+  //   })
+  // }
   return (
-    <div className="w-[100vw] h-[100px] bg-[#343541] flex items-center justify-center     sticky z-10 backdrop-blur ">
+    <div className="w-[100vw] h-[100px] bg-[#343541] flex items-center justify-center  bg-opacity-50     sticky z-10   ">
       <div
         className={` ${
           ban ? 'bg-black' : 'bg-[#40414f]'
@@ -26,6 +30,7 @@ function InputChat(props) {
           onClick={messageSend}
           className="text-gray-400 hover:text-gray-300 cursor-pointer"
         />
+        {/* <button onClick={scrolling}>SCROLL</button> */}
       </div>
     </div>
   )
